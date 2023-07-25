@@ -1,7 +1,7 @@
 # Личный проект «TaskForce»
 
 * Студент: [Yuriy Poluektov](https://up.htmlacademy.ru/nodejs-2/4/user/1779747).
-* Наставник: `Неизвестно`.
+* Наставник: `Семён Якушев`.
 
 ---
 
