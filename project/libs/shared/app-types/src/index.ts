@@ -1,1 +1,1 @@
-export * from './lib/shared-app-types';
+// Ре-экспорт модулей из `./lib`
