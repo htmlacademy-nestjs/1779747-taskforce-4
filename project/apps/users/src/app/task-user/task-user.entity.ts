@@ -1,4 +1,6 @@
 import { User, City, UserRole } from '@project/shared/app-types';
+import { genSalt, hash } from 'bcrypt';
+import { SALT_ROUNDS } from './task-user.constant';
 
 export class TaskUserEntity implements User {
     public _id?: string;
@@ -38,5 +40,11 @@ export class TaskUserEntity implements User {
     this.lastname = taskUser.lastname;
     this.passwordHash = taskUser.passwordHash;
     this.role = taskUser.role;
+  }
+
+  public async setPassword(password: string): Promise<TaskUserEntity> {
+    const salt = await genSalt(SALT_ROUNDS);
+    this.passwordHash = await hash(password, salt);
+    return this;
   }
 }
