@@ -2,8 +2,10 @@ import { CRUDRepository } from '@project/util/util-types';
 import { TaskUserEntity } from './task-user.entity';
 import { User } from '@project/shared/app-types';
 import { randomUUID } from 'node:crypto';
+import { Injectable } from '@nestjs/common';
 
-export class BlogUserMemoryRepository implements CRUDRepository<TaskUserEntity, string, User> {
+@Injectable()
+export class TaskUserMemoryRepository implements CRUDRepository<TaskUserEntity, string, User> {
   private repository: Record<string, User> = {};
 
   public async create(item: TaskUserEntity): Promise<User> {
