@@ -16,7 +16,7 @@ export class AuthenticationService {
         const {firstname, lastname, email, city, dateBirth, password} = dto;
     
         const taskUser = {
-          firstname, lastname, email, role: UserRole.User, city,
+          firstname, lastname, email, role: UserRole.Performer, city,
           avatar: '', dateBirth: dayjs(dateBirth).toDate(),
           passwordHash: ''
         };
