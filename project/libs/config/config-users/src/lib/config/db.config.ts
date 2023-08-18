@@ -1,6 +1,6 @@
 import { registerAs } from '@nestjs/config';
 import { validateSync } from 'class-validator';
-import { DatabaseEnvironment } from './database-environment';
+import { DatabaseEnvironment } from '../database-environment';
 import { plainToInstance } from 'class-transformer';
 
 const DEFAULT_MONGO_PORT = 27017;
