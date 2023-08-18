@@ -17,11 +17,7 @@ export class AuthenticationService {
         private readonly configService: ConfigService,
         @Inject(dbConfig.KEY)
         private readonly databaseConfig: ConfigType<typeof dbConfig>,
-        ) {
-          console.log(databaseConfig);
-          console.log(configService.get<string>('db.host'));
-    console.log(configService.get<string>('db.user'));
-        }
+        ) {}
     public async register(dto: CreateUserDto) {
         const {firstname, lastname, email, city, dateBirth, password} = dto;
     
