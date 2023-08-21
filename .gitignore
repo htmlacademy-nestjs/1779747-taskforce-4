@@ -6,6 +6,9 @@
 /docs/
 .idea/*
 
+# System Files
 .DS_Store
-coverage
-*.log
+Thumbs.db
+
+# Environments
+*.env
