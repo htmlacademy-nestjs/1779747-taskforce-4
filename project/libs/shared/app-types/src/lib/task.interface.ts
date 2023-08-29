@@ -2,6 +2,7 @@ import { City } from "./city.enum";
 import { StatusTask } from "./statusTask.enum";
 import { Comment } from "./comment.interface";
 import { Category } from "./category.interface";
+import { Tag } from "./tag.interface";
 
 export interface Task {
     _id?: string;
@@ -12,7 +13,7 @@ export interface Task {
     deadline?: Date;
     image?: string;
     address?: string;
-    tags?: string;
+    tags?: Tag[];
     city: City[];
     userId: string;
     createdAt: Date;

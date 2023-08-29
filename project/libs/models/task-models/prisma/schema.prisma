@@ -20,7 +20,7 @@ model Task {
   deadline    DateTime   @map("deadline")
   image       String     @default("")
   address     String     @default("")
-  tags        String     @default("")
+  tags        Tag[]     
   city        String     @default("Москва")
   userId      String?    @map("user_id")
   createdAt   DateTime   @default(now())@map("created_at")
@@ -54,4 +54,16 @@ model Comment {
   updatedAt DateTime @updatedAt @map("updated_at")
   task      Task     @relation(fields: [taskId], references: [taskId], onDelete: Cascade, onUpdate: Cascade)
   @@map("comments")
+}
+
+model Tag {
+  tagId     Int      @id @default(autoincrement()) @map("tag_id")
+  message   String
+  userId    String   @map("user_id")
+  task      Task     @relation(fields: [taskId], references: [taskId], onDelete: Cascade, onUpdate: Cascade)
+  taskId    Int      @map("task_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("tags")
 }
