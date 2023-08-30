@@ -1,4 +1,3 @@
-import { City } from "./city.enum";
 import { StatusTask } from "./statusTask.enum";
 import { Comment } from "./comment.interface";
 import { Category } from "./category.interface";
@@ -14,12 +13,12 @@ export interface Task {
     image?: string;
     address?: string;
     tags?: Tag[];
-    city: City[];
+    city: string;
     userId: string;
-    createdAt: Date;
-    publishAt: Date;
-    statusTask: StatusTask;
-    comment: Comment[];
+    createdAt?: Date;
+    publishAt?: Date;
+    // statusTask: StatusTask;
+    comments: Comment[];
 
 
 }

@@ -1,5 +1,5 @@
 export interface Tag {
-    id?: number;
+    tagId?: number;
     message: string;
     taskId?: number;
     userId: string;
