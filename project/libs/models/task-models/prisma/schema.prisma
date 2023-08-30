@@ -15,7 +15,7 @@ model Task {
   taskId      Int        @id @default(autoincrement()) @map("task_id")
   title       String     @default("")
   description String     @default("")
-  category    Category[]
+  categories    Category[]
   price       Int        @default(0)
   deadline    DateTime   @map("deadline")
   image       String     @default("")
@@ -26,7 +26,7 @@ model Task {
   createdAt   DateTime   @default(now())@map("created_at")
   publishAt   DateTime   @updatedAt @map("publish_at")
   statusTask  StatusTask @default(New)
-  comment     Comment[]
+  comments     Comment[]
   @@map("tasks")
 }
 
