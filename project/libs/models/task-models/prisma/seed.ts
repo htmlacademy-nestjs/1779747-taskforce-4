@@ -8,7 +8,7 @@ async function fillDb() {
     update: {},
     create: {
       title: 'Бытовая техника',
-      posts: {
+      tasks: {
         create: [
           {
             title: 'Ремонт холодильниа',
@@ -21,7 +21,7 @@ async function fillDb() {
             tags: {
                 create: [
                     {
-                     message: 'Нужно согодня вечером',
+                     message: 'Нужно сегодня вечером',
                       userId: '14',
                     }
                   ]
@@ -30,7 +30,7 @@ async function fillDb() {
             createdAt: new Date(),
             publishAt: new Date(),
             statusTask: 'New',
-            comment: {
+            comments: {
                 create: [
                     {
                     text: 'Какое время подходит?',
