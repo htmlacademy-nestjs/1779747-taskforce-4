@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output = "../../../../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  taskId      Int        @id @default(autoincrement()) @map("task_id")
+  title       String     @default("")
+  description String     @default("")
+  categories    Category[]
+  price       Int        @default(0)
+  deadline    DateTime   @map("deadline")
+  image       String     @default("")
+  address     String     @default("")
+  tags        Tag[]     
+  city        String     @default("Москва")
+  userId      String?    @map("user_id")
+  createdAt   DateTime   @default(now())@map("created_at")
+  publishAt   DateTime   @updatedAt @map("publish_at")
+  statusTask  StatusTask @default(New)
+  comments     Comment[]
+  @@map("tasks")
+}
+
+model Category {
+  categoryId Int    @id @default(autoincrement()) @map("category_id")
+  title      String
+  tasks      Task[]
+  @@map("categories")
+}
+
+enum StatusTask {
+  New
+  Canceled
+  InWork
+  Done
+  Failed
+}
+
+model Comment {
+  commentId Int      @id @default(autoincrement()) @map("comment_id")
+  text      String
+  taskId    Int      @map("task_id")
+  userId    String?  @map("user_id")
+  createAt  DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  task      Task     @relation(fields: [taskId], references: [taskId], onDelete: Cascade, onUpdate: Cascade)
+  @@map("comments")
+}
+
+model Tag {
+  tagId     Int      @id @default(autoincrement()) @map("tag_id")
+  message   String
+  userId    String   @map("user_id")
+  task      Task     @relation(fields: [taskId], references: [taskId], onDelete: Cascade, onUpdate: Cascade)
+  taskId    Int      @map("task_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("tags")
+}

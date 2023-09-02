@@ -3,5 +3,6 @@ export interface Comment {
     text: string;
     taskId: number;
     userId: string;
-    create: Date
+    createAt: Date
+    updatedAt: Date;
   }
