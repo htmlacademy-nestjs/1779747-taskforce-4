@@ -1,9 +1,10 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query } from '@nestjs/common';
 import { TaskPostService } from './task-post.service';
 import { fillObject } from '@project/util/util-core';
 import { TaskRdo } from './rdo/task.rdo';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { PostQuery } from './query/post.query';
 
 @Controller('tasks')
 export class TaskPostController {
@@ -18,8 +19,8 @@ export class TaskPostController {
   }
 
   @Get('/')
-  async index() {
-    const posts = await this.taskPostService.getTasks();
+  async index(@Query() query: PostQuery) {
+    const posts = await this.taskPostService.getTasks(query);
     return fillObject(TaskRdo, posts);
   }
 
