@@ -5,10 +5,11 @@ const DEFAULT_PORT = 3000;
 const DEFAULT_MONGO_PORT = 27017;
 
 export interface UploaderConfig {
+  serveRoot: string;
   environment: string;
   uploadDirectory: string;
   port: number;
-   db: {
+  db: {
     host: string;
     port: number;
     user: string;
@@ -20,6 +21,7 @@ export interface UploaderConfig {
 
 export default registerAs('application', (): UploaderConfig => {
   const config: UploaderConfig = {
+    serveRoot: process.env.SERVE_ROOT,
     environment: process.env.NODE_ENV,
     uploadDirectory: process.env.UPLOAD_DIRECTORY_PATH,
     port: parseInt(process.env.POR || DEFAULT_PORT.toString(), 10),
@@ -34,30 +36,28 @@ export default registerAs('application', (): UploaderConfig => {
   };
 
   const validationSchema = Joi.object<UploaderConfig>({
+    serveRoot: Joi.string().required(),
     environment: Joi.string()
       .valid('development', 'production', 'stage'),
     port: Joi.number()
       .port()
       .default(DEFAULT_PORT),
-      uploadDirectory: Joi.string(),
-      db: Joi.object({
-        host: Joi.string().valid().hostname(),
-        port: Joi.number().port(),
-        name: Joi.string().required(),
-        user: Joi.string().required(),
-        password: Joi.string().required(),
-        authBase: Joi.string().required(),
-      })
+    uploadDirectory: Joi.string(),
+    db: Joi.object({
+      host: Joi.string().valid().hostname(),
+      port: Joi.number().port(),
+      name: Joi.string().required(),
+      user: Joi.string().required(),
+      password: Joi.string().required(),
+      authBase: Joi.string().required(),
+    })
   });
-
   const { error } = validationSchema.validate(config, { abortEarly: true });
-
   if (error) {
     throw new Error(
       `[Uploader Config]: Environments validation failed. Please check .env file.
        Error message: ${error.message}`,
     );
   }
-
   return config;
 });

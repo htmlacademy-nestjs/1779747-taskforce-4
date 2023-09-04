@@ -7,3 +7,4 @@ export * from './lib/tag.interface';
 export * from './lib/category.interface';
 export * from './lib/comment.interface';
 export * from './lib/statusTask.enum';
+export * from './lib/file.interface';
