@@ -7,6 +7,7 @@ import { fillObject } from '@project/util/util-core';
 import { UploadedFileRdo } from './rdo/uploaded-file.rdo';
 import { uploaderConfig } from '@project/config/config-uploader';
 import { ConfigType } from '@nestjs/config';
+import { MongoidValidationPipe } from '@project/shared/shared-pipes';
 
 @Controller('files')
 export class FileController {
@@ -27,7 +28,7 @@ export class FileController {
   }
 
   @Get(':fileId')
-  public async show(@Param('fileId') fileId: string) {
+  public async show(@Param('fileId', MongoidValidationPipe) fileId: string) {
     const existFile = await this.fileService.getFile(fileId);
     const path = `${this.applicationConfig.serveRoot}${existFile.path}`;
     return fillObject(UploadedFileRdo, Object.assign(existFile, { path }));
