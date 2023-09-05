@@ -4,6 +4,7 @@ import * as Joi from 'joi';
 const DEFAULT_PORT = 3000;
 const DEFAULT_MONGO_PORT = 27017;
 const DEFAULT_RABBIT_PORT = 5672;
+const DEFAULT_SMTP_PORT = 25;
 
 export interface NotifyConfig {
   environment: string;
@@ -23,7 +24,14 @@ export interface NotifyConfig {
     queue: string;
     exchange: string;
     port: number;
-  }
+  },
+  mail: {
+    host: string;
+    port: number;
+    user: string;
+    password: string;
+    from: string;
+  },
 }
 
 export default registerAs('application', (): NotifyConfig => {
@@ -45,6 +53,13 @@ export default registerAs('application', (): NotifyConfig => {
       user: process.env.RABBIT_USER,
       queue: process.env.RABBIT_QUEUE,
       exchange: process.env.RABBIT_EXCHANGE,
+    },
+    mail: {
+      host: process.env.MAIL_SMTP_HOST,
+      port: parseInt(process.env.MAIL_SMTP_PORT ?? DEFAULT_SMTP_PORT.toString(), 10),
+      user: process.env.MAIL_USER_NAME,
+      password: process.env.MAIL_USER_PASSWORD,
+      from: process.env.MAIL_FROM,
     }
   };
 
@@ -69,6 +84,13 @@ export default registerAs('application', (): NotifyConfig => {
       user: Joi.string().required(),
       queue: Joi.string().required(),
       exchange: Joi.string().required(),
+    }),
+    mail: Joi.object({
+      host: Joi.string().valid().hostname().required(),
+      port: Joi.number().port().default(DEFAULT_SMTP_PORT),
+      user: Joi.string().required(),
+      password: Joi.string().required(),
+      from: Joi.string().required(),
     })
   });
 
