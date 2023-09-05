@@ -9,6 +9,7 @@
 # System Files
 .DS_Store
 Thumbs.db
+**/uploads/*
 
 # Environments
 *.env
