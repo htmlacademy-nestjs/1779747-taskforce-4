@@ -9,7 +9,6 @@ Content-Type: application/json
   "city": "Москва",
   "dateBirth": "2012-02-22",
   "password": "123456"
-  
 }
 
 ###

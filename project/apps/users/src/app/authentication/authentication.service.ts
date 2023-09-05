@@ -17,9 +17,8 @@ export class AuthenticationService {
         private readonly taskUserRepository: TaskUserMemoryRepository,
         private readonly configService: ConfigService,
         private readonly jwtService: JwtService,
-        @Inject(dbConfig.KEY)
-        private readonly databaseConfig: ConfigType<typeof dbConfig>,
         ) {}
+        
     public async register(dto: CreateUserDto) {
         const {firstname, lastname, email, city, dateBirth, password} = dto;
     
