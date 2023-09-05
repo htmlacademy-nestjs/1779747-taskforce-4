@@ -5,6 +5,8 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { Task} from '@project/shared/app-types';
 import { TaskPostEntity } from './task-post.entity';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { PostQuery } from './query/post.query';
+
 
 @Injectable()
 export class TaskPostService {
@@ -27,8 +29,8 @@ export class TaskPostService {
     return this.taskPostRepository.findById(id);
   }
 
-  async getTasks(): Promise<Task[]> {
-    return this.taskPostRepository.find();
+  async getTasks(query: PostQuery): Promise<Task[]> {
+    return this.taskPostRepository.find(query);
   }
 
   async updateTask(_id: number, _dto: UpdatePostDto): Promise<Task> {

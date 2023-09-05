@@ -25,7 +25,7 @@ model Task {
   userId      String?    @map("user_id")
   createdAt   DateTime   @default(now())@map("created_at")
   publishAt   DateTime   @updatedAt @map("publish_at")
-  statusTask  StatusTask @default(New)
+  // statusTask  StatusTask @default(New)
   comments     Comment[]
   @@map("tasks")
 }

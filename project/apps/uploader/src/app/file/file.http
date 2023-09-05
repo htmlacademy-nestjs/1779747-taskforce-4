@@ -1,0 +1,16 @@
+# Upload some file
+POST http://localhost:3000/api/files/upload HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="test.txt"
+
+< /Users/dmitriybocenkov/Projects/2101165-taskforce-4/project/apps/uploader/uploads/test.txt
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+# Get file by ID
+GET http://localhost:3333/api/files/6437c9bdaa7ff52ac6fbe090 HTTP/1.1
+
+###

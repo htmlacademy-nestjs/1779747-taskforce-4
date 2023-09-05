@@ -1,7 +1,7 @@
 import { ConflictException, Inject, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { TaskUserMemoryRepository } from '../task-user/task-user-memory.repository';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UserRole } from '@project/shared/app-types';
+import { TokenPayload, User, UserRole } from '@project/shared/app-types';
 import dayjs from 'dayjs';
 import { AUTH_USER_EXISTS, AUTH_USER_NOT_FOUND, AUTH_USER_PASSWORD_WRONG } from './authentication.constant';
 import { TaskUserEntity } from '../task-user/task-user.entity';
@@ -9,15 +9,16 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { ConfigType } from '@nestjs/config';
 import { dbConfig } from '@project/config/config-users';
 import { ConfigService } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthenticationService {
     constructor(
         private readonly taskUserRepository: TaskUserMemoryRepository,
         private readonly configService: ConfigService,
-        @Inject(dbConfig.KEY)
-        private readonly databaseConfig: ConfigType<typeof dbConfig>,
+        private readonly jwtService: JwtService,
         ) {}
+        
     public async register(dto: CreateUserDto) {
         const {firstname, lastname, email, city, dateBirth, password} = dto;
     
@@ -60,4 +61,18 @@ export class AuthenticationService {
       public async getUser(id: string) {
         return this.taskUserRepository.findById(id);
       }
+      public async createUserToken(user: User) {
+        const payload: TokenPayload = {
+          sub: user._id,
+          email: user.email,
+          role: user.role,
+          lastname: user.lastname,
+          firstname: user.firstname,
+        };
+    
+        return {
+          accessToken: await this.jwtService.signAsync(payload),
+        }
+      }
+    
 }

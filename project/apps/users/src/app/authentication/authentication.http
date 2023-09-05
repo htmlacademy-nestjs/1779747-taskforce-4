@@ -9,13 +9,13 @@ Content-Type: application/json
   "city": "Москва",
   "dateBirth": "2012-02-22",
   "password": "123456"
-  
 }
 
 ###
 
 # Get user by ID
-GET http://localhost:3000/api/auth/0ae6ff30-7f32-49e0-ac43-cf64769a3160 HTTP/1.1
+GET http://localhost:3333/api/auth/6425d3dcc4c989f519332176 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDI1ZDNkY2M0Yzk4OWY1MTkzMzIxNzYiLCJlbWFpbCI6InVzZXJAbm90Zm91bmQubG9jYWwiLCJyb2xlIjoidXNlciIsImxhc3RuYW1lIjoiU21pdGgiLCJmaXJzdG5hbWUiOiJLZWtzIiwiaWF0IjoxNjgxMzk3NDE5LCJleHAiOjE2ODEzOTgwMTl9.xPy5MTcsgPO_rO0i_SwRAHWjuGtmNTyZbky-A3c_a4Q
 
 ###
 
