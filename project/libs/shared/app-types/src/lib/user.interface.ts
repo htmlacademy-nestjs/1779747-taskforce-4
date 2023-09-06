@@ -9,6 +9,6 @@ export interface User {
   city: City;
   passwordHash: string;
   role: UserRole;
-  avatar: string;
+  avatar?: string;
   dateBirth: Date;
 }
