@@ -12,8 +12,8 @@ services:
     image: rabbitmq:3.11-management
     container_name: taskforce.notify.rabbitmq
     ports:
-      - '1088:15672'
-      - '5672:5672'
+      - "1088:15672"
+      - "5672:5672"
     environment:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: test
@@ -49,8 +49,7 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
       ME_CONFIG_MONGODB_ADMINPASSWORD: test
-      ME_CONFIG_MONGODB_URL: mongodb://admin:test@taskforce.notify.mongodb:27017/
+      ME_CONFIG_MONGODB_URL: mongodb://admin:qwerty@taskforce.notify.mongodb:27017/
 
 volumes:
   taskforce.notify.mongodb:
- 

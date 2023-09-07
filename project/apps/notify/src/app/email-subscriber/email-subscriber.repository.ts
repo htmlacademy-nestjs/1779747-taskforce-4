@@ -1,6 +1,6 @@
 import { CRUDRepository } from '@project/util/util-types';
 import { EmailSubscriberEntity } from './email-subscriber.entity';
-import { Subscriber } from '@project/shared/app-types';
+import { Subscriber, UserRole } from '@project/shared/app-types';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { EmailSubscriberModel } from './email-subscriber.model';
@@ -39,4 +39,10 @@ export class EmailSubscriberRepository implements CRUDRepository<EmailSubscriber
       .findOne({ email })
       .exec()
   }
+
+  public async findByRole(userRole: UserRole): Promise<Subscriber[]> {
+    return this.emailSubscriberModel
+      .find({ role: userRole })
+      .exec();
+}
 }
