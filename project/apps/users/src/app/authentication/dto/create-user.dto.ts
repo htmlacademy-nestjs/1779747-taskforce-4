@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { City, UserRole } from "@project/shared/app-types";
-import { IsEmail, IsISO8601, IsEnum, IsString, MinLength, MaxLength, MaxDate } from 'class-validator';
+import { IsEmail, IsEnum, IsString, MinLength, MaxLength, MaxDate } from 'class-validator';
 import { AUTH_USER_DATE_BIRTH_NOT_VALID, AUTH_USER_EMAIL_NOT_VALID, 
   AUTH_USER_CITY_NOT_VALID, AUTH_USER_PASSWORD_MIN_LENGTH, 
   AUTH_USER_PASSWORD_MAX_LENGTH, AUTH_USER_NAME_MIN_LENGTH , AUTH_USER_NAME_MAX_LENGTH  } from '../authentication.constant';
