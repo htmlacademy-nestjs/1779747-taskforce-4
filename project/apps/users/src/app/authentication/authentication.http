@@ -3,11 +3,11 @@ POST http://localhost:3000/api/auth/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "firstname": "Keks",
+  "firstname": "Keкс",
   "lastname": "Smith",
   "email": "user@notfound.local",
   "city": "Москва",
-  "dateBirth": "2012-02-22",
+  "dateBirth": "2002-02-22",
   "password": "123456",
   "role": "client",
   "avatar": ""

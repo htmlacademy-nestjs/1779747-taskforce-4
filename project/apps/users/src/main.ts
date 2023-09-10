@@ -9,21 +9,22 @@ import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-
-  const config = new DocumentBuilder()
+const CONFIG = new DocumentBuilder()
     .setTitle('The «Users» service')
     .setDescription('Users service API')
     .setVersion('1.0')
     .build();
 
-  const globalPrefix = 'api';
-  app.setGlobalPrefix(globalPrefix);
+const GLOBAL_PREFIX = 'api';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  app.setGlobalPrefix(GLOBAL_PREFIX);
 
   const configService = app.get(ConfigService);
 
-  const document = SwaggerModule.createDocument(app, config);
+  const document = SwaggerModule.createDocument(app, CONFIG);
   SwaggerModule.setup('spec', app, document);
 
   app.useGlobalPipes(new ValidationPipe());
@@ -32,7 +33,7 @@ async function bootstrap() {
   
   await app.listen(port);
   Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
+    `🚀 Application is running on: http://localhost:${port}/${GLOBAL_PREFIX}`
   );
   Logger.log(
     `🎯  Current mode: ${configService.get('application.environment')}`

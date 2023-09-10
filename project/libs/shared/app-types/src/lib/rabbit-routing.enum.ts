@@ -1,3 +1,4 @@
 export enum RabbitRouting {
-    AddSubscriber = 'notify.addSubscriber'
+    AddSubscriber = 'notify.addSubscriber',
+    NewTask = 'notify.newTask'
   }
